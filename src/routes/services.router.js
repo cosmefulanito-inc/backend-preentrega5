@@ -1,19 +1,19 @@
 import { Router } from "express"
 
 import {
-  getServices,
-  getServiceById,
-  createService,
-  updateService,
-  deleteService
+  ControllerGetServices,
+  ControllerGetServiceById,
+  ControllerCreateService,
+  ControllerUpdateService,
+  ControllerDeleteService
 } from "../controllers/services.controller.js"
 
 const router = Router()
 
-router.get("/", getServices)
-router.get("/:sid", getServiceById)
-router.post("/", createService)
-router.put("/:sid", updateService)
-router.delete("/:sid", deleteService)
+router.get("/", ControllerGetServices)
+router.get("/:sid", ControllerGetServiceById)
+router.post("/", ControllerCreateService)
+router.put("/:sid", ControllerUpdateService)
+router.delete("/:sid", ControllerDeleteService)
 
 export default router

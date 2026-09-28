@@ -1,10 +1,25 @@
-import * as BookingManager from "../managers/BookingManager.js"
-import * as ServiceManager from "../managers/ServiceManager.js"
+import * as bookingServices from "../services/booking.service.js"
 
-export const createBooking = async (req, res) => {
+import * as serviceServices from "../services/service.service.js"
+
+export const ControllerGetAll = async (req, res) => {
   try {
-    const newBooking = await BookingManager.createBooking(req.body)
+    const bookings = await bookingServices.getBookings()
+    res.status(200).json({
+      status: "success",
+      data: bookings
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: error.message
+    })
+  }
+}
 
+export const ControllerCreateBooking = async (req, res) => {
+  try {
+    const newBooking = await bookingServices.createBooking(req.body)
     res.status(201).json({
       status: "success",
       data: newBooking
@@ -18,10 +33,10 @@ export const createBooking = async (req, res) => {
   }
 }
 
-export const getBookingById = async (req, res) => {
+export const ControllerGetBookingById = async (req, res) => {
   try {
     const { bid } = req.params
-    const booking = await BookingManager.getBookingById(bid)
+    const booking = await bookingServices.getBookingById(bid)
 
     if (!booking) {
       return res.status(404).json({
@@ -42,12 +57,12 @@ export const getBookingById = async (req, res) => {
   }
 }
 
-export const addServiceToBooking = async (req, res) => {
+export const ControllerBookingUpdate = async (req, res) => {
   try {
     const { bid, sid } = req.params
 
-    const service = await ServiceManager.getServiceById(sid)
 
+    const service = await serviceServices.getServiceById(sid)
     if (!service) {
       return res.status(404).json({
         status: "error",
@@ -55,8 +70,7 @@ export const addServiceToBooking = async (req, res) => {
       })
     }
 
-    const updatedBooking = await BookingManager.addServiceToBooking(bid, sid)
-
+    const updatedBooking = await bookingServices.updateBooking(bid, { serviceId: sid })
     if (!updatedBooking) {
       return res.status(404).json({
         status: "error",
@@ -74,6 +88,30 @@ export const addServiceToBooking = async (req, res) => {
       status: "error",
       message: "No se pudo agregar el servicio a la reserva.",
       error: error.message
+    })
+  }
+}
+
+export const ControllerDeleteBooking = async (req, res) => {
+  try {
+    const { bid } = req.params
+    const deleted = await bookingServices.deleteBooking(bid)
+
+    if (!deleted) {
+      return res.status(404).json({
+        status: "error",
+        message: "Reserva no encontrada."
+      })
+    }
+
+    res.status(200).json({
+      status: "success",
+      message: "Reserva eliminada correctamente."
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: error.message
     })
   }
 }

@@ -1,20 +1,20 @@
 import { Router } from "express";
 
 import {
-  createBooking,
-  getBookingById,
-  addServiceToBooking
+  ControllerGetAll,
+  ControllerCreateBooking,
+  ControllerGetBookingById,
+  ControllerBookingUpdate,
+  ControllerDeleteBooking
 } from "../controllers/bookings.controller.js"
 
 const router = Router()
 
-// Consultar reserva por id
-router.get("/:bid", getBookingById)
+router.get("/", ControllerGetAll)
+router.get("/:bid", ControllerGetBookingById)
+router.post("/", ControllerCreateBooking)
+router.post("/:bid/services/:sid", ControllerBookingUpdate)
+router.delete("/:bid", controllerDeleteBooking)
 
-// Crear una nueva reserva
-router.post("/", createBooking)
-
-// Agregar un servicio a una reserva existente
-router.post("/:bid/services/:sid", addServiceToBooking)
 
 export default router

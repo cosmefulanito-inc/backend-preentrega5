@@ -1,17 +1,17 @@
-import * as ServiceManager from "../managers/ServiceManager.js"
+import * as serviceServices from "../services/services.service.js"
 
-export const getServices = async (req, res) => {
+export const ControllerGetServices = async (req, res) => {
   try {
-    const services = await ServiceManager.getServices()
+    const services = await serviceServices.getServices()
     res.status(200).json(services)
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
 }
 
-export const getServiceById = async (req, res) => {
+export const ControllerGetServiceById = async (req, res) => {
   try {
-    const service = await ServiceManager.getServiceById(req.params.sid)
+    const service = await serviceServices.getServiceById(req.params.sid)
     if (!service) return res.status(404).json({ error: "Servicio no encontrado" })
     res.status(200).json(service)
   } catch (error) {
@@ -19,18 +19,18 @@ export const getServiceById = async (req, res) => {
   }
 }
 
-export const createService = async (req, res) => {
+export const ControllerCreateService = async (req, res) => {
   try {
-    const newService = await ServiceManager.addService(req.body)
+    const newService = await serviceServices.addService(req.body)
     res.status(201).json(newService)
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
 }
 
-export const updateService = async (req, res) => {
+export const ControllerUpdateService = async (req, res) => {
   try {
-    const updated = await ServiceManager.updateService(req.params.sid, req.body)
+    const updated = await serviceServices.updateService(req.params.sid, req.body)
     if (!updated) return res.status(404).json({ error: "Servicio no encontrado" })
     res.status(200).json(updated)
   } catch (error) {
@@ -38,9 +38,9 @@ export const updateService = async (req, res) => {
   }
 }
 
-export const deleteService = async (req, res) => {
+export const ControllerDeleteService = async (req, res) => {
   try {
-    const deleted = await ServiceManager.deleteService(req.params.sid)
+    const deleted = await serviceServices.deleteService(req.params.sid)
     if (!deleted) return res.status(404).json({ error: "Servicio no encontrado" })
     res.status(200).json({ message: "Servicio eliminado" })
   } catch (error) {
