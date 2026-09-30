@@ -47,7 +47,7 @@ export async function updateBooking(id, changes){
 }
 
 
-export async function deleteBooking(id){
+export async function removeBooking(id){
     return repository.remove(id)
 }
 

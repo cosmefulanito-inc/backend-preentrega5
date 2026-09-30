@@ -15,7 +15,7 @@ export async function addService(data) {
 }
 
 export async function deleteService(id){
-    return repository.delete(id)
+    return repository.remove(id)
 }
 
 export async function updateService(id, changes){

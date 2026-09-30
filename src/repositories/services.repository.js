@@ -1,4 +1,4 @@
-import * as dao from "../dao/services.fs.dao.js"
+import * as dao from "../dao/fileSystem/services.fs.dao"
 
 export async function getAll(){
     return dao.getAll()
@@ -12,8 +12,8 @@ export async function getById(id) {
     return dao.getById(id)
 }
 
-export async function delete(id){
-    return dao.delete(id)
+export async function remove(id){
+    return dao.remove(id)
 }
 
 export async function update(id, changes){

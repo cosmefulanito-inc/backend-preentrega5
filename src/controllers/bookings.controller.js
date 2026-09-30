@@ -95,7 +95,7 @@ export const ControllerBookingUpdate = async (req, res) => {
 export const ControllerDeleteBooking = async (req, res) => {
   try {
     const { bid } = req.params
-    const deleted = await bookingServices.deleteBooking(bid)
+    const deleted = await bookingServices.removeBooking(bid)
 
     if (!deleted) {
       return res.status(404).json({

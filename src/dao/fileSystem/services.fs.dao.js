@@ -73,7 +73,6 @@ export async function update(id, changes) {
   return true
 }
 
-
 export async function delete(id) {
   const services = await getAll()
 

@@ -14,7 +14,7 @@ router.get("/", ControllerGetAll)
 router.get("/:bid", ControllerGetBookingById)
 router.post("/", ControllerCreateBooking)
 router.post("/:bid/services/:sid", ControllerBookingUpdate)
-router.delete("/:bid", controllerDeleteBooking)
+router.delete("/:bid", ControllerDeleteBooking)
 
 
 export default router
