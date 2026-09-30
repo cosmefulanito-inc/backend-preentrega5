@@ -73,7 +73,7 @@ export async function update(id, changes) {
   return true
 }
 
-export async function delete(id) {
+export async function remove(id) {
   const services = await getAll()
 
   // Asigno a una variable todos los registros del JSON, excepto aquel que coincide con el ID del que quiero borrar

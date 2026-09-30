@@ -1,4 +1,4 @@
-import * as dao from "../dao/fileSystem/services.fs.dao"
+import * as dao from "../dao/fileSystem/services.fs.dao.js"
 
 export async function getAll(){
     return dao.getAll()

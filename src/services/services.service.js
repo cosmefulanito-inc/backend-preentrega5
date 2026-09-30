@@ -1,4 +1,4 @@
-import * as repository from "../repositories/services.repositories.js"
+import * as repository from "../repositories/services.repository.js"
 import {randomUUID} from "crypto"
 
 export async function getServices() {

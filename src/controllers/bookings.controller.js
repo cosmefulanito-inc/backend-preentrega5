@@ -1,6 +1,6 @@
-import * as bookingServices from "../services/booking.service.js"
+import * as bookingServices from "../services/bookings.service.js"
 
-import * as serviceServices from "../services/service.service.js"
+import * as serviceServices from "../services/services.service.js"
 
 export const ControllerGetAll = async (req, res) => {
   try {
